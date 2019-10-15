@@ -26,11 +26,18 @@
 		folder: Source/test_Ford_LP.cpp 
 3. Test_Ford_LP_Alg(...): Testing FordAlg(...), that searches the longest path.
 
-
 ##makefile
-	command make: Run make file for generate dependency(*.dep) and objects(*.o) units,
-	              and as a final result execution file(main.out), which represent tests results.
-	command make debug: Make compilation and linking with "-g" flag.
-	command make profile: Make compilation and linking with "-pg" flag, which give as
-	                      an oportunity to see proper time analysis for each project unit.
+###      command make:
+		Run make file for generate dependency(*.dep) and objects(*.o) units, and as a final result execution 
+		file(main.out), which represent tests results.
+###      command make debug:
+		Make compilation and linking with "-g" flag.
+###      command make profile:
+		Make compilation and linking with "-pg" flag, which give as an oportunity to see proper time analysis
+		for each project unit.
+###      command make gcov:
+		Make compilation and linking with "--coverage" flag, which give as an oportunity to see covearge analysis
+		for each source unit. LCOV options are also demonstrated.
+
+
 

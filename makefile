@@ -23,13 +23,13 @@ run :
 
 .PHONY : clean
 clean :
-	rm -rf Objects Depends Bin gmon.out
+	rm -rf Objects Depends Bin GcovResults Report gmon.out profile_data.txt coverage.info
 
 .PHONY : debug 
 debug : clean
 	$(MAKE) FLAGS="-g"
 	@echo "Running GDB"
-	#The same command as below. "gdb ./$(TARGET)"
+	The same command as below. "gdb ./$(TARGET)"
 	gdb ./Bin/main.out
 
 .PHONY : profile
@@ -37,7 +37,23 @@ profile : clean
 	$(MAKE) FLAGS="-pg"
 	./$(TARGET)
 	@echo "Running GPROF"
-	gprof -b ./$(TARGET)
+	gprof -q -b $(TARGET) gmon.out profile_data.txt
+
+.PHONY : gcov
+gcov : clean
+	$(MAKE) FLAGS="--coverage"
+	./$(TARGET)
+	@echo "Running GCOV"
+	@mkdir GcovResults
+	@gcov -r Objects/graph 
+	@gcov -r Objects/dijkstra_alg 
+	@gcov -r Objects/ford_alg
+	@gcov -r Objects/algorithm_utility
+	@mv *gcov GcovResults
+	@echo "Running LCOV"
+	@lcov -t "$(TARGET)" -o coverage.info -c -d .
+	@genhtml -o Report coverage.info
+	@xdg-open Report/index.html
 
 ifneq ($(MAKECMDGOALS), clean)
 -include $(DEPENDS)

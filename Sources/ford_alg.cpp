@@ -43,12 +43,5 @@ void FordAlg (const Graph& g, const Vertex* source, const Vertex* target,
 		}
 		q.pop();	
 	}
-
-	//****************************************************
-	for(auto e : out_prev)
-
-
-	//**************************************************
 	return;
 }
-
