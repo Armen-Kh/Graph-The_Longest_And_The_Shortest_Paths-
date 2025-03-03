@@ -37,7 +37,7 @@ profile : clean
 	$(MAKE) FLAGS="-pg"
 	./$(TARGET)
 	@echo "Running GPROF"
-	gprof -q -b $(TARGET) gmon.out profile_data.txt
+	gprof -q -b $(TARGET) gmon.out > profile_data.txt
 
 .PHONY : gcov
 gcov : clean
